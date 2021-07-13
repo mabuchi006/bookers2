@@ -2,54 +2,74 @@
 <html>
 
 <head>
-  <title>Bookers2</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-</head>
+ <header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
+      <a class="navbar-brand" href="/"><span>Bookers</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+         <% if user_signed_in? %>
+           <li class="nav-item px-2">
+           <%= link_to  user_path(current_user) ,class: "text-light" do %>
+           <span class="fas fa-home">Home
+           <% end %>
+           </li>
+           <li>
+           <%= link_to  users_path ,class: "text-light" do%>
+           <i class="fas fa-users">Users</i>
+           <% end %>
+           </li>
+           <li>
+                <%= link_to books_path, class:"fas fa-book-open nav-link text-light" do %>
+                <span class="glyphicon glyphicon-book" aria-hidden="true"> Books</span>
+                <% end %>
+           </li>
+           <li class="nav-item px-2">
+           <%= link_to destroy_user_session_path,class: "text-light" do%>
+           <i class="fas fa-sign-out-alt">logout</i>
+           <% end %>
+           </li>
+
+         <% else %>
+           <li class="nav-item px-2">
+           <%= link_to  root_path ,class: "text-light" do %>
+           <i class="fas fa-home">Home</i>
+           <% end %>
+           </li>
+           <li class="nav-item px-2">
+           <%= link_to  about_path ,class: "text-light" do%>
+           <i class ="fas fa-link">About</i>
+           <% end %>
+           </li>
+           <li class="nav-item px-2">
+           <%= link_to new_user_registration_path,class: "text-light" do %>
+           <i class="fas fa-user-plus">sign up</i>
+           <% end %>
+           </li>
+           <li class="nav-item px-2">
+           <%= link_to  new_user_session_path,class: "text-light" do%>
+           <i class="fas fa-sign-in-alt">login</i>
+           <% end %>
+           </li>
+         <% end %>
+         </li>
+         </li>
+        </ul>
+      </div>
+  </nav>
+</header>
 <body>
-  <div class="navbar navbar-inverse">
-    <div class="navbar-left text-muted">
-      <h2 class="title">Bookers</h2>
-    </div>
-    <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
-      <% if user_signed_in? %>
-      <li class="">
-        <%= link_to 'Home', user_path(current_user.id), class: "glyphicon glyphicon-home home" %>
-        <!-- 現在ログイン中のってしたい -->
-      </li>
-      <li class="">
-        <%= link_to 'Users', users_path , class: "glyphicon glyphicon-user users" %>
-      </li>
-      <li class="">
-        <%= link_to 'Books', books_path, class: "glyphicon glyphicon-book books"  %>
-      </li>
-      <li class="">
-        <%= link_to "logout", destroy_user_session_path, method: :delete , class: "glyphicon glyphicon-log-out logout" %>
-      </li>
-
-      <% else %>
-      <li class="">
-        <%= link_to "Home", root_path %>
-      </li>
-      <li class="">
-        <%= link_to "About", about_path %>
-      </li>
-      <!-- 上二つが仮。ログアウト時のホームと、home/aboutを調べる。 -->
-      <li class="">
-        <%= link_to "sign up", new_user_registration_path %>
-      </li>
-      <li class="">
-        <%= link_to "Login", new_user_session_path %>
-      </li>
-      <% end %>
-    </ul>
-  </div>
   <%= yield %>
-  <footer class="col-md-offset-9 col-md-3">CopyRight Infratop.inc</footer>
 </body>
-
 </html>

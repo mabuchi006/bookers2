@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_28_123534) do
+ActiveRecord::Schema.define(version: 2021_07_05_083041) do
 
   create_table "books", force: :cascade do |t|
     t.text "title", default: "", null: false
@@ -29,6 +29,9 @@ ActiveRecord::Schema.define(version: 2021_06_28_123534) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "profile_image_id"
+    t.string "name", default: "", null: false
+    t.string "introduction", default: ""
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

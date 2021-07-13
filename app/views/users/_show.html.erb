@@ -8,9 +8,6 @@
 <% end %>
 <% end %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-xs-3">
       <h2>User info</h2>
 
       <%= attachment_image_tag user, :profile_image, :fill, size:'120x120', format: 'jpeg', fallback: "no_image.jpg" %>
@@ -32,10 +29,9 @@
 
 
       </table>
+      <%= link_to "", edit_user_path(user), class: "btn btn-outline-secondary btn-block fas fa-user-cog" %>
 
-      <% if @user.id == current_user.id %>
-      <%= link_to " ", edit_user_path(user), class: "btn btn-default glyphicon glyphicon-wrench" %>
-      <% end %>
+
 
       <h1>New book</h1>
       <%= form_for(book) do |f| %>
@@ -45,4 +41,3 @@
       <%= f.text_area :body %><br>
       <%= f.submit 'Create Book', class: "btn btn-primary" %>
       <% end %>
-    </div>

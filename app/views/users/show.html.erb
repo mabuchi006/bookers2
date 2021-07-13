@@ -4,11 +4,12 @@
   <%= flash[:success] %>
 </div>
 <% end %>
-<%= render '/users/show', user: @user,book: @book %>
-
-<div class="col-xs-9">
+<div class="container">
+<div class="row">
+<div class="col-md-3"><%= render '/users/show', user: @user,book: @book %></div>
+<div class="col-md-8 offset-md-1">
   <h2>Books</h2>
-  <table class="table table-hover table-inverse">
+  <table class="table table-hover table-invers">
     <thead>
       <th></th>
       <th>title</th>

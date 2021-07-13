@@ -13,9 +13,9 @@
  *= require_tree .
  *= require_self
  */
-
- @import "bootstrap-sprockets";  /*ここを追加*/
-@import "bootstrap";            /*ここを追加*/
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
 
 header {
 	color:white;
@@ -24,10 +24,6 @@ header {
 header .navbar-left span {
 	font-size: 20px;
 	padding-top: 10px;
-}
-
-body {
-	margin-top: 40px;
 }
 
 .actions {
