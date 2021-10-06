@@ -1,0 +1,7 @@
+<h2>Follower Users</h2>
+<% if @users.exists? %>
+  <%= render '/users/index', users: @users %>
+<% else %>
+  <p>ユーザーはいません</p>
+  <td><%= attachment_image_tag user, :profile_image, :fill, size:'60x60', format: 'jpeg', fallback: "no_image.jpg" %></td>
+<% end %>
