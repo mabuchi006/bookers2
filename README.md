@@ -350,3 +350,158 @@ for ( 初期値; 条件式; 増減値 ){
 4	変数numに「num+i」を代入
 5	アラートウィンドウに計算結果を表示
 
+変数宣言の種類
+JavaScriptの変数宣言は3種類あります。
+
+【var】
+
+var string = "WEBCAMP"
+
+【let】
+
+let string = "WEBCAMP"
+
+【const】
+
+const string = "WEBCAMP"
+
+再宣言
+一度、宣言した変数名で再度、変数宣言を行うことを再宣言といいます。
+
+再宣言を行うことができるのはvarのみとなります。
+
+// varによる再宣言
+var nickname = "taro"
+console.log(nickname)
+var nickname = "ichiro"
+console.log(nickname)
+
+// letによる再宣言
+let nickname = "taro"
+console.log(nickname)
+let nickname = "ichiro"
+console.log(nickname)
+
+// constによる再宣言
+const nickname = "taro"
+console.log(nickname)
+const nickname = "ichiro"
+console.log(nickname)
+
+再代入
+変数に値を代入した後で、別の値を代入することを再代入と言います。
+再代入はvarとletで、可能です。constでは再代入ができません。
+
+// varによる再代入
+var nickname = "taro"
+console.log(nickname)
+nickname = "jiro"
+console.log(nickname)
+
+// letによる再代入
+let nickname = "taro"
+console.log(nickname)
+nickname = "jiro"
+console.log(nickname)
+
+// constによる再代入
+const nickname = "taro"
+console.log(nickname)
+nickname = "jiro"
+console.log(nickname)
+
+スコープ
+変数にはスコープ（有効範囲）というものがあります。
+定義した変数の有効範囲になります。
+
+グローバルスコープとローカルスコープが存在します。
+またローカルスコープには次のものが存在します。
+
+・関数スコープ
+・ブロックスコープ
+
+varのスコープ
+varでは関数スコープ（ローカルスコープ）、グローバルスコープの変数を宣言できます。
+
+グローバルスコープとはどこからでも参照できる変数です。
+関数スコープは関数の中でvarによって宣言された変数です。
+関数スコープの有効範囲は関数内になります
+
+var str = "webcamp" //グローバルスコープ
+
+function foo() {
+  console.log(str)
+  var y = "hello" //関数スコープ
+}
+
+foo()
+console.log(y)
+
+function foo() {
+  let x = "webcamp"
+  {
+    let y = "hello webcamp"
+  }
+  console.log(x)
+  console.log(y)
+}
+
+foo()
+
+for (let i = 0; i < 10; i++) {
+  console.log(i)
+}
+
+console.log(i)
+
+var str = "webcamp"
+
+function foo() {
+  console.log(str)
+  var str = "dmm webcamp"
+  console.log(str)
+}
+
+foo()
+
+var str = "webcamp"
+
+function foo() {
+  var str
+  console.log(str)
+  str = "dmm webcamp"
+  console.log(str)
+}
+
+foo()
+
+変数宣言の使い分け
+変数宣言の際に意識すべきことはスコープと、再代入です。
+できる限り、変数のスコープは使用される箇所で局所的であることが望ましいとされています。
+
+スコープが広いことで、意図しない参照からエラーが発生したり、期待通りの結果が得られないリスクが高くなります。また、そのような場合には修正作業にもたくさんの時間を消費してしまうことが多いです。
+このような理由もあり、普通に開発をしているとvarを使用する場面というのは今ではほとんど、ありません。varは過去のものとなっています。
+
+昨今は、letとconstを変数宣言に使用していくことになります。
+
+では、letとconstをどのように使い分けていくかというところで解説していきます。
+letとconstの違いを思い出してください。
+
+letは再代入が可能であり、constは再代入が不可能です。
+constで宣言した変数に値を格納した場合、新たに値を代入することはできませんでした。
+基本的に、新たに値を代入する必要のないものに関してはconstで宣言していくことになります。
+
+letは再代入をする場面において、使用すべきものとなります。
+次のコードを確認してください。
+
+for (let i = 0; i < 10; i++) {
+  console.log(i);
+}
+０~9までをループによってコンソールに出力するコードです。
+この場合、iをletで宣言する理由はループするたびにiに再代入を行うためです。
+
+constは定数として扱う変数の宣言に使う、といった内容で記載されている記事もありますが
+constのもつ特徴として定数的に扱えるというのが正しい表現となります。
+
+適切なスコープで変数宣言を行っていくことで、意図しないエラーや結果を招く可能性は低くなります。
+
