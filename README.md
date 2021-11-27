@@ -641,3 +641,30 @@ function winLose(user, js){
   return winLoseStr;
 }
 
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <script src="jquery.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+
+$(document).ready(function () {
+  $('body').html('<h1>Hello jQuery!!</h1>');
+});
+
+$(document).ready(function () {
+  // jQueryプログラムの内容
+});
+
+$(function(){
+  // jQueryプログラムの内容
+});
+
+$( セレクタ ).メソッド ( パラメータ );
+
+$('body').html('<h1>Hello JQuery!!</h1>');
+
