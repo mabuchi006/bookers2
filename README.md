@@ -668,3 +668,42 @@ $( セレクタ ).メソッド ( パラメータ );
 
 $('body').html('<h1>Hello JQuery!!</h1>');
 
+jQueryとは
+jQuery（ジェイクエリー）は、最も広く使われているJavaScriptライブラリです。
+JavaScriptの難解な部分を解消させるために、2006年に誕生しました。
+JavaScriptライブラリとは、JavaScriptの処理を簡単に扱えるようにしたプログラムです。
+
+jQueryを使うことで、HTML要素の構造や、文字色や背景色などを簡単に変更できるようになります。
+このため、Webサイトを作成するときに必要不可欠なライブラリになっています。
+
+1.1.jQueryを使うメリット①ブラウザが違っても使える
+JavaScriptを実行する際は、それぞれのブラウザのエンジンが使われます。
+
+例えばChromeならChromeのメソッドや記法があり、SafariならSafariのメソッドや記法があります。
+jQueryはブラウザごとの違いを吸収してくれるので、便利です。
+1.2.jQueryを使うメリット②HTMLのDOMの操作が簡単
+jQueryはHTMLのDOMの操作が簡単です。 DOMとはHTMLの部品だと考えてください。 DOM操作の例とは下記の通りです。
+
+テキストボックスの中身を取得したり、変更する
+画面部品の表示をボタン一つで非表示にしたり、再表示させる
+CSSをユーザー操作に合わせて変更する
+1.3.jQueryを使うメリット③Ajaxの処理が簡単に記述できる
+Ajaxとは、Asynchoronous JavaScript and XMLの略で、直訳すると、「非同期(で動作する)JavaScript」 となります。
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <script src="jquery.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+
+$(document).ready(function () {
+  // jQueryプログラムの内容
+});
+
+$('body').html('<h1>Hello JQuery!!</h1>');
+
