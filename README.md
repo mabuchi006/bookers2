@@ -707,3 +707,41 @@ $(document).ready(function () {
 
 $('body').html('<h1>Hello JQuery!!</h1>');
 
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="box1"></div>
+    <script src="jquery.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+
+.box1 {
+  background-color: #FF0000;
+  height: 200px;
+  width: 200px;
+}
+
+.box1 {
+  display: none;  background-color: #FF0000;
+  height: 200px;
+  width: 200px;
+}
+
+$(function(){
+  $('.box1').slideDown();
+});
+
+.box1 {
+  /* display: none; を削除 */  background-color: #FF0000;
+  height: 200px;
+  width: 200px;
+}
+
+$(function(){
+  $('.box1').slideUp();
+});
+
