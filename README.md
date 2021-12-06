@@ -745,3 +745,24 @@ $(function(){
   $('.box1').slideUp();
 });
 
+.box1 {
+  display: none;  background-color: #FF0000;
+  height: 200px;
+  width: 200px;
+}
+
+$(function(){
+  $('.box1').show();
+  $('.box1').css({'background-color': '#0000FF'});
+});
+
+.box1 {
+  /* display: none; を削除 */  background-color: #FF0000;
+  height: 200px;
+  width: 200px;
+}
+
+$(function(){
+  $('.box1').hide();
+});
+
