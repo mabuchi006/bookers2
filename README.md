@@ -881,3 +881,122 @@ p	×	有	配列型として出力	有
 print	◯	有	文字列として出力	無
 puts	×	無	配列の各要素を改行区切りで出力	有
 
+複数行の標準入力
+複数行の標準入力をしたい場合はどのようにすればいいか、紹介します。
+
+readlines
+readlinesというメソッドを使用すると複数行の標準入力を行うことができます。
+試してみましょう。
+
+stdin_sampleフォルダのmultiple_lines.rbを開いて以下のコードを記述して保存します。
+
+multiple_lines.rb
+input_line = readlines
+p input_line
+保存ができたら実行します。
+
+username:~/environment/stdin_sample $ ruby multiple_lines.rb
+実行すると、以下のようにターミナルが標準入力待ちの状況になります。
+
+username:~/environment/stdin_sample $ ruby multiple_lines.rb 
+❚
+複数行を以下の様に入力してみましょう。
+
+dmmwebcampと入力
+Enterを押下（改行）
+hello worldと入力
+Enterを押下（改行）
+以下のようになっていれば問題ありません。
+
+username:~/environment/stdin_sample $ ruby multiple_lines.rb
+dmmwebcamp
+hello world
+❚
+この状態でCtrl+(D)を押してください。
+※Ctrl+(D)を押すことで標準入力待機の状態から抜けます。
+以下のようになります。
+
+username:~/environment/stdin_sample $ ruby multiple_lines.rb
+dmmwebcamp
+hello world
+["dmmwebcamp\n", "hello world\n"]
+["dmmwebcamp\n", "hello world\n"]と表示されている部分が標準出力になります。
+
+getsとの違い
+readlinesはgetsとは違い複数行の標準入力を受け付けます。
+また、受け取った値は配列として取得されます。
+
+【補足】
+getsでも複数行の標準入力が可能ですが、readlinesとは違いファイルを使用して実行します。
+
+それでは実際に試してみましょう。
+stdin_sampleフォルダのmultiple_gets.rbを開いて、以下のコードを記述して保存します。
+
+multiple_gets.rb
+while line = gets
+ p line
+end
+次に、stdin_sampleフォルダのinput.txtを開いて中身を確認します。
+中身は以下のようになっています。
+
+input.txt
+dmmwebcamp
+hello world
+それではgetsで複数行を標準入力、標準出力してみましょう。
+以下のコマンドを実行してください。
+
+username:~/environment/stdin_sample $ ruby multiple_gets.rb < input.txt
+実行結果は以下のようになります。
+
+username:~/environment/stdin_sample $ ruby multiple_gets.rb < input.txt
+"dmmwebcamp\n"
+"hello world\n"
+getsでも複数行の標準入力と標準出力を行うことができました。
+コマンドの解説をします。
+
+username:~/environment/stdin_sample $ ruby multiple_gets.rb < input.txt
+< が使用されていますが、これはリダイレクションというものです。
+ 標準出力や標準入力、の矛先を変更するような役割をしています。
+今回の場合、標準入力をinput.txtによって行うというリダイレクションになります。
+
+コードの解説をします。
+
+while line = gets
+ p line
+end
+whileによるループが行われています。
+whileは指定した条件式がtrueである限り、繰り返しを実行します。
+今回の場合、line = getsが成立する、つまりinput.txtの中身を一行ずつ取り出せる間、繰り返し処理にてp lineを実行するといった内容になっています。
+
+実践的な標準入力・標準出力
+ここからはよくある標準入力と標準出力を学びます。
+
+一行に空白区切りで複数の要素が並び、空白区切りごとに配列に格納する
+stdin_sampleフォルダのgets_practice.rbを実行してみましょう。
+
+username:~/environment/stdin_sample $ ruby gets_practice.rb 
+標準入力には「hello world webcamp」と入力してみましょう。
+実行結果は以下のようになります。
+
+username:~/environment/stdin_sample $ ruby gets_practice.rb 
+hello world webcamp
+["hello", "world", "webcamp"]
+実行結果を見ると標準入力の内容に対して、空白区切りでそれぞれ配列の要素に格納されています。
+
+コードの解説を行います。
+
+Cloud9上でstdin_sampleフォルダのgets_practice.rbを開いて確認してみましょう。
+コードは以下のようになっています。
+
+gets_practice.rb
+line = gets.split(' ')
+p line
+getsに続いてsplitメソッドが使用されています。
+splitメソッドは文字列を分割して配列として格納するメソッドです。
+分割するための区切り文字は第一引数に指定します。
+今回の場合(' ')と半角スペースを区切り文字としています。
+getsで標準入力した内容は「hello world webcamp」とあるので
+
+hello
+world
+webcamp
