@@ -1000,3 +1000,151 @@ getsで標準入力した内容は「hello world webcamp」とあるので
 hello
 world
 webcamp
+
+実践的な標準入力・標準出力
+ここからはよくある標準入力と標準出力を学びます。
+
+一行に空白区切りで複数の要素が並び、空白区切りごとに配列に格納する
+stdin_sampleフォルダのgets_practice.rbを実行してみましょう。
+
+username:~/environment/stdin_sample $ ruby gets_practice.rb 
+標準入力には「hello world webcamp」と入力してみましょう。
+実行結果は以下のようになります。
+
+username:~/environment/stdin_sample $ ruby gets_practice.rb 
+hello world webcamp
+["hello", "world", "webcamp"]
+実行結果を見ると標準入力の内容に対して、空白区切りでそれぞれ配列の要素に格納されています。
+
+コードの解説を行います。
+
+Cloud9上でstdin_sampleフォルダのgets_practice.rbを開いて確認してみましょう。
+コードは以下のようになっています。
+
+gets_practice.rb
+line = gets.split(' ')
+p line
+getsに続いてsplitメソッドが使用されています。
+splitメソッドは文字列を分割して配列として格納するメソッドです。
+分割するための区切り文字は第一引数に指定します。
+今回の場合(' ')と半角スペースを区切り文字としています。
+getsで標準入力した内容は「hello world webcamp」とあるので
+
+hello
+world
+webcamp
+といった形でそれぞれ配列の要素として分割されて格納されました。
+
+演習1
+gets_practice.rbでgetsによる標準入力で空白区切りの配列を生成しましたが、eachメソッドを利用して配列の要素を一つずつpメソッドで標準出力してみましょう。
+標準入力の内容はhello world webcampとする。
+
+解答はこちら
+二次元配列
+次に進む前に、二次元配列について学びます。
+二次元配列とは配列の中に配列があるものを言います。
+
+以下の図で一次元配列と二次元配列について確認しましょう。
+また、それぞれに対応するファイルもstdin_sampleフォルダの中に用意しているので実行してみましょう。
+
+コードに直した場合も確認してみましょう。
+
+【一次元配列】
+
+
+
+stdin_sampleフォルダのarray.rbを実行します。
+
+username:~/environment/stdin_sample $ ruby array.rb 
+["A", "B", "C"]
+【二次元配列】
+
+
+
+stdin_sampleフォルダの2d_array.rbを実行します。
+実行結果は以下のようになります。
+
+username:~/environment/stdin_sample $ ruby 2d_array.rb 
+[["A", "B", "C"], ["D", "E", "F"], ["G", "H", "I"]]
+配列の中に3つの配列が存在するのが分かると思います。
+
+二次元配列の操作
+二次元配列とは配列の中に配列が存在するということは分かりました。
+次に二次元配列の中身を一つずつ表示するということをしてみます。
+
+まずはstdin_sampleフォルダのprint_2d_array.rbを実行してみましょう。
+実行結果は以下のようになります。
+
+username:~/environment/stdin_sample $ ruby print_2d_array.rb 
+"A"
+"B"
+"C"
+"D"
+"E"
+"F"
+"G"
+"H"
+"I"
+配列の中の配列の中身を一つずつ表示されていますね。
+
+print_2d_array.rbのコードを確認してみましょう。
+
+arr = [
+  ['A', 'B', 'C'],
+  ['D', 'E', 'F'],
+  ['G', 'H', 'I']
+]
+
+arr.each do |inner_arr|
+  inner_arr.each do |word|
+    p word
+  end
+end
+arr.each do |inner_arr|の部分でarrの中身を一つずつ取り出し、inner_arrというブロック変数に格納しています。始めのループではinner_arrに['A', 'B', 'C']という配列が格納されているということになります。
+次にinner_arr.each do |word|で、inner_arrの中身（['A', 'B', 'C']）を一つずつ取り出し、wordというブロック変数に格納しています。始めのループでwordにはAが格納されます。
+
+そしてwordをpで出力します。
+
+出力を終えたら、inner_arrの次のループに移りB、Cと続き、inner_arrのループを終えます。すると、arr.each do |inner_arr|に戻り次はinner_arrに['D', 'E', 'F']を格納して繰り返していきます。
+このようにeachの中でeachをすることで二次元配列に対応することも可能になります。
+
+複数行に空白区切りで複数の要素が並び、行ごとに空白区切りで配列に格納する
+stdin_sampleフォルダのreadlines_practice.rbを実行してみましょう。
+
+username:~/environment/stdin_sample $ ruby readlines_practice.rb 
+標準入力には以下のように入力します。
+
+HTML CSS JavaScript
+PHP Ruby Python
+Java Go C++(改行)
+※C++の後でEnterで改行を入れておきます。実行結果を見やすくするためです。
+
+実行結果は以下のようになります。
+
+username:~/environment/stdin_sample $ ruby readlines_practice.rb 
+HTML CSS JavaScript
+PHP Ruby Python
+Java Go C++ 
+["HTML", "CSS", "JavaScript"]
+["PHP", "Ruby", "Python"]
+["Java", "Go", "C++"]
+コードの解説を行います。
+
+Cloud9上でstdin_sampleフォルダのreadlines_practice.rbを開いて確認してみましょう。
+コードは以下のようになっています。
+
+lines = readlines
+lines.each do |words|
+  p words.chomp.split(' ')
+end
+linesは配列であり、行ごとに配列の要素となっています。
+従って1行目のlinesの中身を出力すると以下のような状態にあります。
+
+["HTML CSS JavaScript\n", "PHP Ruby Python\n", "Java Go C++\n"]
+行ごとに配列の要素となっていることがわかります。
+
+ここからlinesをeachによるループで要素を一つずつ取り出し変数wordsに代入して、ループ内の処理へと移ります。
+ループ内ではp words.chomp.split('')を処理しています。
+ここで、chompメソッドが使用されていますが、chompは文字列末尾の改行を取り払うメソッドです。
+またsplitによって半角スペースを区切り文字として配列を返しています。
+その結果をpメソッドによって出力しています。
