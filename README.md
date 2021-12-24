@@ -1282,3 +1282,52 @@ $(function(){
     $('.box1').removeClass('box1-ext');
   });
 });
+
+thisとは
+「this」は、イベントが発生した要素のみ変化させたいときに使います。
+
+実際にコードに記述して、thisを試してみることにしましょう。
+index.htmlファイルとapp.cssファイルに、それぞれ以下のように記述します。
+また、app.jsファイル内の記述は、いったんすべてを削除しましょう。
+
+index.html
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="box">
+      <div class="box1 bg1"></div>
+      <div class="box1 bg2"></div>
+      <div class="box1 bg3"></div>
+      <div class="box1 bg4"></div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+app.css
+.box1 {
+  background-color: #FFFFFF;
+  height: 200px;
+  width: 200px;
+  float: left;
+}
+
+.bg1 {
+  background-color: #FFAAAA;
+}
+
+.bg2 {
+  background-color: #FFBBBB;
+}
+
+.bg3 {
+  background-color: #FFCCCC;
+}
+
+.bg4 {
+  background-color: #FFDDDD;
+}
