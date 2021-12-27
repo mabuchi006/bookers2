@@ -1331,3 +1331,158 @@ app.css
 .bg4 {
   background-color: #FFDDDD;
 }
+
+thisとは
+「this」は、イベントが発生した要素のみ変化させたいときに使います。
+
+実際にコードに記述して、thisを試してみることにしましょう。
+index.htmlファイルとapp.cssファイルに、それぞれ以下のように記述します。
+また、app.jsファイル内の記述は、いったんすべてを削除しましょう。
+
+index.html
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="box">
+      <div class="box1 bg1"></div>
+      <div class="box1 bg2"></div>
+      <div class="box1 bg3"></div>
+      <div class="box1 bg4"></div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+app.css
+.box1 {
+  background-color: #FFFFFF;
+  height: 200px;
+  width: 200px;
+  float: left;
+}
+
+.bg1 {
+  background-color: #FFAAAA;
+}
+
+.bg2 {
+  background-color: #FFBBBB;
+}
+
+.bg3 {
+  background-color: #FFCCCC;
+}
+
+.bg4 {
+  background-color: #FFDDDD;
+}
+ファイルを保存した後、index.htmlファイルをブラウザで開いてみましょう。
+4つの正方形が4色のグラデーションで表示されたことと思います。
+
+
+
+app.jsファイルに以下のように記述して、動作を追加してみましょう。
+正方形をクリックしたときに、その正方形のみslideUpして消えるアニメーションです。
+
+app.js
+$(function(){
+  $('.bg1').on('click', function(){
+    $('.bg1').slideUp();
+  });
+
+  $('.bg2').on('click', function(){
+    $('.bg2').slideUp();
+  });
+
+  $('.bg3').on('click', function(){
+    $('.bg3').slideUp();
+  });
+
+  $('.bg4').on('click', function(){
+    $('.bg4').slideUp();
+  });
+});
+ファイルを保存した後、ブラウザをリロードして試してみましょう。
+任意の正方形をクリックすると、その正方形のみslideUpして消えていくことを確認できると思います。
+
+
+
+この書き方では、同じ動作をさせるのに、class名のみ異なるイベントを4つも記述しなければならず、少し面倒です。
+多くのアニメーションをさせたいときは、さらに煩雑でわかりにくくなってしまいます。
+
+そんなときに便利なのが、thisです。
+thisを利用すると、コードをシンプルにまとめることができます。
+それではさっそく、app.jsファイルをthisを使って書き換えてみましょう。
+
+app.js
+$(function(){
+  $('.box1').on('click', function(){
+    $(this).slideUp();
+  });
+});
+かなりシンプルで短くなりましたね。
+ファイルを保存した後、ブラウザをリロードして試してみましょう。さきほどと同じ動作になることを確認できると思います。
+
+thisは、「クリックされた要素」を指しています。
+前のコードでは、それぞれの正方形に個別にclass属性を指定していました。
+今回のコードでは、「box1クラスの正方形がクリックされたとき、this（クリックされた要素）のみslideUpさせる」という設定になります。
+
+thisを使うと、このように多くの処理をまとめて書くことができて、とても便利です。
+ただし、コード上からでは、何をクリックしたときに動作するのか判別しにくいデメリットもあります。
+
+thisを使うメリットとデメリットをよく理解したうえで、利用するようにしましょう。
+
+
+childrenとは
+「children」は、HTML要素直下のすべての子要素を取得するときに使います。
+今回も、実際にコードを書いてchildrenを試してみることにしましょう。
+
+index.htmlファイルとapp.jsファイルに、それぞれ以下のように記述します。
+
+また、app.cssファイル内の記述は、いったんすべてを削除してください。
+
+index.html
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <h1>childrenサンプル</h1>
+    <button>クリック</button>
+    <h3>リスト</h3>
+    <ul>
+      <li>Home</li>
+      <li>Concept</li>
+      <li>Products</li>
+      <li>Access</li>
+    </ul>
+    <script src="jquery.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+app.js
+$(function(){
+  $('button').on('click', function(){
+    $('ul').children().css('color','red');
+  });
+});
+ファイルを保存した後、index.htmlファイルをブラウザで開いてみましょう。
+
+以下のような画面が表示されるので、「クリック」ボタンをクリックしてみてください。
+リスト（ul要素）の子要素であるli要素内の文字列が、黒色から赤色に変化することを確認できます。
+
+
+
+app.jsファイルの記述を確認していきましょう。
+
+$('button').on('click', function(){
+この記述は、前章で学びましたね。
+「button要素がクリックされたときに、処理を実行してください」の意味になります。
+
+$('ul').children().css('color','red');
