@@ -1486,3 +1486,33 @@ $('button').on('click', function(){
 「button要素がクリックされたときに、処理を実行してください」の意味になります。
 
 $('ul').children().css('color','red');
+
+childrenとは
+「children」は、HTML要素直下のすべての子要素を取得するときに使います。
+今回も、実際にコードを書いてchildrenを試してみることにしましょう。
+
+index.htmlファイルとapp.jsファイルに、それぞれ以下のように記述します。
+
+また、app.cssファイル内の記述は、いったんすべてを削除してください。
+
+index.html
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <h1>childrenサンプル</h1>
+    <button>クリック</button>
+    <h3>リスト</h3>
+    <ul>
+      <li>Home</li>
+      <li>Concept</li>
+      <li>Products</li>
+      <li>Access</li>
+    </ul>
+    <script src="jquery.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
